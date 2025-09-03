@@ -1,23 +1,21 @@
 class Solution {
     public boolean isPalindrome(String s) {
 
-        int n = s.length();
-        String a = "";
+        s = s.replaceAll("[^a-zA-Z0-9]+", "");
 
-        for(int i = 0 ; i < n ;i++)
-        {
-            char ch = s.charAt(i);
-            if(Character.isLetterOrDigit(ch))
-            {
-                a+=Character.toLowerCase(ch);
-            }
+        s= s.toLowerCase();
+        int i =0;
+       int j = s.length()-1;
+       while(i<j){
+        if(s.charAt(i) == s.charAt(j)){
+            i++;
+            j--;
         }
-        String b = "";
-        int m = a.length();
-        for(int i = m-1 ; i >= 0 ;i--)
-        {
-            b+=a.charAt(i);
+        else{
+            return false;
         }
-        return a.equals(b);
+       }
+       return true;
+
     }
 }
