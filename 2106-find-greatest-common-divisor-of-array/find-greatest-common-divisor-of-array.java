@@ -5,6 +5,10 @@ class Solution {
 
         int a = nums[0];
         int b = nums[nums.length-1];
+        if(a==b)
+        {
+            return a;
+        }
 
         while(a!=b)
         {
