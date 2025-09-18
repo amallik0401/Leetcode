@@ -3,7 +3,6 @@ class Solution {
     {
         int sum =0 ;
         int n = nums.length;
-        System.out.println(n);
 
         for(int i=0 ; i<nums.length ; i++)
         {
