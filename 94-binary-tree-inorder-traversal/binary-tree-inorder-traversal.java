@@ -19,6 +19,7 @@ class Solution {
 
         List<Integer> l = new ArrayList<>();
         helper(l , root);
+        System.out.println("root");
         return l;
     }
         void helper(List<Integer> l , TreeNode root)
