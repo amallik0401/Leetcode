@@ -2,10 +2,6 @@ class Solution
 {
     public int countValidSelections(int[] nums) 
     {
-        if(nums.length==1 && nums[0]==0)
-        {
-            return 2;
-        }
 
         int count = 0, n = nums.length;
 
