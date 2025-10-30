@@ -1,9 +1,9 @@
 class Solution {
     public int minNumberOperations(int[] target) {
         
-        int ans = target[0];
+        int n = target.length , ans = target[0];
 
-        for(int i = 1 ; i<target.length ; i++)
+        for(int i = 1 ; i<n ; i++)
         {
             if(target[i]>target[i-1])
             {
