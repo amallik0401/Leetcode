@@ -6,6 +6,9 @@ class Solution {
 
         for(int i = 0 ; i <nums.length ; i++)
         {
+            if(p==2)
+                break;
+
             if(hs.contains(nums[i]))
             {
                 ans[p] = nums[i];
