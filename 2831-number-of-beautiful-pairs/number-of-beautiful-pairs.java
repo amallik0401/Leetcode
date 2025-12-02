@@ -25,11 +25,8 @@ class Solution {
 
     private boolean gcd(int x,int y)
     {
-        if (x == 1 || y == 1)
-        {
-            return true;
-        }
-        
+
+
         while(y!=0)
         {
             int temp = y;
