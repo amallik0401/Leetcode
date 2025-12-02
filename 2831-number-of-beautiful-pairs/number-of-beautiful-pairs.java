@@ -12,7 +12,17 @@ class Solution {
                 {
                     a/=10;
                 }
+                if (a == 1)
+                {
+                    count++;
+                    continue;
+                }
                 int b = nums[j] % 10;
+                if (b == 1)
+                {
+                    count++;
+                    continue;
+                }
 
                 if(gcd(a,b))
                 {
