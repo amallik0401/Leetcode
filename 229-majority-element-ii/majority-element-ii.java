@@ -7,6 +7,9 @@ class Solution {
         Map<Integer , Integer> mp = new HashMap<Integer , Integer>();
         for(int x:nums)
         {
+            if(ls.contains(x))
+                continue;
+            
             if(mp.containsKey(x))
                 mp.put(x , mp.get(x)+1);
 
@@ -15,7 +18,6 @@ class Solution {
 
             if(mp.get(x) >a)
             {
-                if(!ls.contains(x))
                     ls.add(x);
             }
         }
