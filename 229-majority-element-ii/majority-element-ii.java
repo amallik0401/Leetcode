@@ -7,6 +7,9 @@ class Solution {
         Map<Integer , Integer> mp = new HashMap<Integer , Integer>();
         for(int x:nums)
         {
+            if (ls.size() == 2)
+                break;
+
             if(ls.contains(x))
                 continue;
             
@@ -14,9 +17,9 @@ class Solution {
                 mp.put(x , mp.get(x)+1);
 
             else
-                mp.put(x ,1);
+                mp.put(x , 1);
 
-            if(mp.get(x) >a)
+            if(mp.get(x) > a)
             {
                     ls.add(x);
             }
