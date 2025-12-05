@@ -54,11 +54,6 @@ class Solution {
             }
         }  
 
-        for(char c : st)
-        {
-            System.out.println(c);
-        }
-
         char prev = 'a';
         while(!st.isEmpty())
         {
