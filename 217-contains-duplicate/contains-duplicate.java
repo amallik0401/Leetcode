@@ -5,9 +5,11 @@ class Solution {
 
         for(int x : nums)
         {
+            if(hs.contains(x))
+                return true;
             hs.add(x);
         }      
   
-        return hs.size()!= nums.length;
+        return false;
     }
 }
