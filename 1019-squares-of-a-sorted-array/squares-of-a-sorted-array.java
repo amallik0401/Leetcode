@@ -1,5 +1,14 @@
 class Solution {
     public int[] sortedSquares(int[] nums) {
+        if(nums[0]>=0)
+        {
+            for(int i = 0 ; i < nums.length ;i++)
+            {
+                nums[i] *=nums[i];
+            }
+
+            return nums;
+        }
         Stack<Integer> stack = new Stack<>();
 
         int l = 0 , r = nums.length-1;
