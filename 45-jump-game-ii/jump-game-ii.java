@@ -1,22 +1,22 @@
 class Solution {
     public int jump(int[] nums) {
         int n = nums.length;
+
         int [] dp = new int[n];
 
-        for(int i = 0 ; i < n ; i++)
+        dp[0] = 0;
+        for(int i = 1 ; i < n ; i++)
         {
-            dp[i] =99999;
+            dp[i] =9999;
         }
-        dp[0]=0;
 
-        for(int i = 0 ; i < n ; i++)
+        for(int i = 0 ; i< n ; i++)
         {
-            for(int j = i+1 ; j< n && j<= i+nums[i] ; j++)
+            for(int j = i+1 ; j < n && j <= i+nums[i] ; j++)
             {
-                dp[j] = Math.min(dp[j] , dp[i]+1);
+                dp[j] = Math.min(dp[j] , dp[i] + 1);
             }
         }
-
         return dp[n-1];
     }
 }
