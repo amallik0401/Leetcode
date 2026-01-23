@@ -1,114 +1,88 @@
-class Node {
+class Solution {
 
-    long value;
-    int left;
-    Node prev;
-    Node next;
+  private static class Segment implements Comparable<Segment> {
+      int index;
+      long value;
+      long mergeCost;
+      Segment left;
+      Segment right;
 
-    Node(int value, int left) {
-        this.value = value;
-        this.left = left;
-    }
-}
+      Segment(int idx, long val) {
+          index = idx;
+          value = val;
+      }
 
-class PQItem implements Comparable<PQItem> {
+      @Override
+      public int compareTo(Segment o) {
+          if (right == null || o.right == null) {
+              return right == null ? 1 : -1;
+          }
+          long diff = mergeCost - o.mergeCost;
+          if (diff != 0) return diff < 0 ? -1 : 1;
+          return index - o.index;
+      }
+  }
 
-    Node first;
-    Node second;
-    long cost;
+  public int minimumPairRemoval(int[] nums) {
+      TreeSet<Segment> heap = new TreeSet<>();
+      int violations = 0;
 
-    PQItem(Node first, Node second, long cost) {
-        this.first = first;
-        this.second = second;
-        this.cost = cost;
-    }
+      Segment current = null;
 
-    @Override
-    public int compareTo(PQItem other) {
-        if (this.cost == other.cost) {
-            return this.first.left - other.first.left;
-        }
-        return this.cost < other.cost ? -1 : 1;
-    }
-}
+      for (int i = 0; i < nums.length; i++) {
+          Segment node = new Segment(i, nums[i]);
 
-public class Solution {
+          if (current != null) {
+              if (node.value < current.value) violations++;
 
-    public int minimumPairRemoval(int[] nums) {
-        PriorityQueue<PQItem> pq = new PriorityQueue<>();
-        boolean[] merged = new boolean[nums.length];
+              current.right = node;
+              node.left = current;
 
-        int decreaseCount = 0;
-        int count = 0;
-        Node head = new Node(nums[0], 0);
-        Node current = head;
+              current.mergeCost = current.value + node.value;
+              heap.add(current);
+          }
+          current = node;
+      }
 
-        for (int i = 1; i < nums.length; i++) {
-            Node newNode = new Node(nums[i], i);
-            current.next = newNode;
-            newNode.prev = current;
-            pq.offer(
-                new PQItem(current, newNode, current.value + newNode.value)
-            );
-            if (nums[i - 1] > nums[i]) {
-                decreaseCount++;
-            }
-            current = newNode;
-        }
+      heap.add(current);
 
-        while (decreaseCount > 0) {
-            PQItem item = pq.poll();
-            Node first = item.first;
-            Node second = item.second;
-            long cost = item.cost;
+      int operations = 0;
 
-            if (
-                merged[first.left] ||
-                merged[second.left] ||
-                first.value + second.value != cost
-            ) {
-                continue;
-            }
-            count++;
-            if (first.value > second.value) {
-                decreaseCount--;
-            }
+      while (violations > 0) {
+          operations++;
 
-            Node prevNode = first.prev;
-            Node nextNode = second.next;
-            first.next = nextNode;
-            if (nextNode != null) {
-                nextNode.prev = first;
-            }
+          Segment best = heap.pollFirst();
+          Segment next = best.right;
 
-            if (prevNode != null) {
-                if (prevNode.value > first.value && prevNode.value <= cost) {
-                    decreaseCount--;
-                } else if (
-                    prevNode.value <= first.value && prevNode.value > cost
-                ) {
-                    decreaseCount++;
-                }
+          if (next.value < best.value) violations--;
 
-                pq.offer(new PQItem(prevNode, first, prevNode.value + cost));
-            }
+          best.value += next.value;
+          best.mergeCost = best.value + (next.right != null ? next.right.value : 0);
 
-            if (nextNode != null) {
-                if (second.value > nextNode.value && cost <= nextNode.value) {
-                    decreaseCount--;
-                } else if (
-                    second.value <= nextNode.value && cost > nextNode.value
-                ) {
-                    decreaseCount++;
-                }
+          best.right = next.right;
+          if (next.right != null) {
+              if (next.right.value < next.value) violations--;
+              next.right.left = best;
+              if (best.value > next.right.value) violations++;
+          }
 
-                pq.offer(new PQItem(first, nextNode, cost + nextNode.value));
-            }
+          heap.remove(next);
+          heap.add(best);
 
-            first.value = cost;
-            merged[second.left] = true;
-        }
+          Segment prev = best.left;
+          if (prev != null) {
+              heap.remove(prev);
 
-        return count;
-    }
+              if (prev.value > prev.mergeCost - prev.value) violations--;
+              if (prev.value > best.value) violations++;
+
+              prev.mergeCost = prev.value + best.value;
+              prev.right = best;
+
+              heap.add(prev);
+          }
+      }
+
+      return operations;
+  }
 }
