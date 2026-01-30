@@ -1,31 +1,28 @@
 class Solution {
-    List<Integer> list = new ArrayList<>();
-    List<List<Integer>> res = new ArrayList<>();
-
     public List<List<Integer>> permute(int[] nums) {
+        List<Integer> ls = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
 
-        BT(nums);
-        
-        return res;
+        helper(nums , ls , ans);
+
+        return ans;
     }
 
-    void BT(int []nums )
+    void helper(int [] arr ,List<Integer> ls , List<List<Integer>> ans)
     {
-        if(list.size() == nums.length)
+        if(ls.size() == arr.length)
         {
-            res.add(new ArrayList<>(list));
+            ans.add(new ArrayList<>(ls));
             return;
         }
-
-        for(int i = 0 ; i < nums.length ; i++)
+        for(int i = 0 ; i < arr.length ; i++)
         {
-            if(list.contains(nums[i]))
+            if(ls.contains(arr[i]))
                 continue;
             
-            list.add(nums[i]);
-            BT(nums);
-            list.remove(list.size()-1);
+            ls.add(arr[i]);
+            helper(arr, ls , ans);
+            ls.remove(ls.size()-1);
         }
-
     }
 }
