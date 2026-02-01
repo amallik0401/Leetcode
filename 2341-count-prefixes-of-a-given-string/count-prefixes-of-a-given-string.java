@@ -1,9 +1,9 @@
 class Solution {
     public int countPrefixes(String[] words, String s) {
         int count = 0; 
-        for(int i = 0 ; i < words.length ; i++)
+        for(String str : words)
         {
-            if(s.startsWith(words[i]))
+            if(s.startsWith(str))
                 count++;
         }
         return count;
