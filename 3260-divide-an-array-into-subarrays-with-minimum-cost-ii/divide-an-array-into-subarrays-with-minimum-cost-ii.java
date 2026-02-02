@@ -1,7 +1,6 @@
 class Solution {
     public long minimumCost(int[] nums, int k, int dist) {
         int n = nums.length;
-        //维护长度固定为dist+1的滑动窗口的前1~k-1小数的和
         PriorityQueue<Integer> pq_left = new PriorityQueue<>((a, b)->b-a);
         PriorityQueue<Integer> pq_right = new PriorityQueue<>();
         Map<Integer, Integer> map = new HashMap<>();
@@ -11,9 +10,8 @@ class Solution {
         long res = Long.MAX_VALUE;
 
         for(int i=1; i<n; i++){
-            //删除旧元素，此时堆顶元素合法
             if(i>=dist+2){
-                int v = nums[i-dist-1];  //旧元素
+                int v = nums[i-dist-1];  
                 if(v<pq_left.peek()){
                     map.merge(v, 1, Integer::sum);
                     valid_left--;
