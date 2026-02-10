@@ -1,34 +1,34 @@
-public class Solution {
-    int lo,maxLen;
-
-    public String longestPalindrome(String s) 
-    {     
+class Solution {
+    int low , high;
+    public String longestPalindrome(String s) {
+        
         int n = s.length();
 
         if(n<2)
             return s;
 
-        for(int i = 0 ; i < n-1 ; i++)
+        for(int i = 0 ; i < n-1 ; i ++)
         {
             helper(s,i,i);
             helper(s,i,i+1);
         }
 
-        return s.substring(lo , lo+maxLen);
+        return s.substring(low , low+high);
+        
     }
 
-    void helper(String s , int k , int j)
+    void helper(String s , int j , int k)
     {
-        while(k>=0 && j<s.length() && s.charAt(k)==s.charAt(j))
+        while(k>=0 && j<s.length() && s.charAt(j) == s.charAt(k))
         {
             k--;
             j++;
         }
 
-        if(maxLen < j - k -1)
+        if(high < j-k)
         {
-            lo = k+1;
-            maxLen = j-k-1;
+            low = k+1;
+            high = j-k-1;
         }
     }
 }
