@@ -7,9 +7,7 @@ class Solution {
         for(int i = 0 ; i < n ; i++)
         {
             if(s.charAt(i)=='(')
-            {
                 st.push(i);
-            }
             else
             {
                 st.pop();
