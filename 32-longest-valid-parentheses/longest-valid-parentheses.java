@@ -14,13 +14,9 @@ class Solution {
             {
                 st.pop();
                 if(st.isEmpty())
-                {
                     st.push(i);
-                }
                 else
-                {
                     max = Math.max(max ,i-st.peek() );
-                }
             }
         }
         return max;
