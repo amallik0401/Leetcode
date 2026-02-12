@@ -23,11 +23,11 @@ class Solution {
         if(root == null)
             return 0;
 
-        value = value * 10 + root.val;
+        value = value *10 + root.val;
 
-        if(root.left == null && root.right == null)
+        if(root.left == null && root.right==null)
             return value;
-
+        
         return dfs(root.left , value) + dfs(root.right , value);
     }
 }
