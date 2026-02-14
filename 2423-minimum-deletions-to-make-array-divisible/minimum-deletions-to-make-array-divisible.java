@@ -9,8 +9,7 @@ class Solution {
         {
             gcd = Gcd(gcd , numsDivide[i]);
         }
-        System.out.println(gcd);
-    
+        
         for(int i = 0 ; i < nums.length ;i++)
         {
             if(gcd%nums[i] == 0)
