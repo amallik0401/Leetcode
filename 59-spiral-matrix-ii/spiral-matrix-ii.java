@@ -21,23 +21,21 @@ class Solution {
             }
             right--;
 
-            if(top<=bottom)
-            {
-                for(int i = right ; i >= left ;i--)
+
+           for(int i = right ; i >= left ;i--)
                 {
                     mat[bottom][i] = m++;
                 }
                 bottom--;
-            }
+            
 
-            if(left<=right)
-            {
+
                 for(int i = bottom ; i>=top ; i--)
                 {
                     mat[i][left] = m++;
                 }   
                 left++;
-            }
+            
         }
         return mat;
     }
