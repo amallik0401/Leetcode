@@ -8,20 +8,32 @@ class Solution {
         for(char c : path.toCharArray())
         {
             if(c == 'N')
+            {
                 y++;
+            }
             else if(c == 'E')
+            {
                 x++;
+            }
             else if(c == 'S')
+            {
                 y--;
+            }
             else
+            {
                 x--;
+            }
 
             String s = x+"," + y;
 
             if(set.contains(s))
+            {
                 return true;
+            }
             else
+            {
                 set.add(s);
+            }
         }
 
         return false;
