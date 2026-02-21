@@ -7,32 +7,19 @@ class Solution {
 
         for(char c : path.toCharArray())
         {
-            if(c == 'N')
-            {
-                y++;
-            }
-            else if(c == 'E')
-            {
-                x++;
-            }
-            else if(c == 'S')
-            {
-                y--;
-            }
-            else
-            {
-                x--;
+
+            switch (c) {
+                case 'N': y++; break;
+                case 'S': y--; break;
+                case 'E': x++; break;
+                case 'W': x--; break;
             }
 
             String s = x+"," + y;
 
-            if(set.contains(s))
+            if(!set.add(s))
             {
                 return true;
-            }
-            else
-            {
-                set.add(s);
             }
         }
 
