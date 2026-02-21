@@ -25,7 +25,6 @@ class Solution {
             }
 
             String s = x+"," + y;
-            System.out.print(s);
 
             if(set.contains(s))
             {
