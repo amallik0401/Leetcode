@@ -29,15 +29,13 @@ class Solution {
                 }
             }
         }
-
-        int min = Integer.MAX_VALUE;
-
-        for(int i = 0 ; i <= total/2 ; i++)
-        {
-            if(dp[n][i])
-                min = Math.min(min , Math.abs((total - i) - i));
+        int target = total/2;
+        for (int i = target; i >= 0; i--) {
+            if (dp[n][i]) {
+                return total - 2 * i;
+            }
         }
 
-        return min;
+        return 0;
     }
 }
