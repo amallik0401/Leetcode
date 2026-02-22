@@ -8,7 +8,7 @@ class Solution {
             total += i;
         }
 
-        boolean [][]dp = new boolean[n+1][total/2+1];
+        boolean [][]dp = new boolean[n+1][total+1];
 
         for(int i = 0 ; i <= n ; i++)
         {
@@ -17,7 +17,7 @@ class Solution {
 
         for(int i = 1 ; i <= n ; i++)
         {
-            for(int j = 1 ; j <= total/2 ; j++)
+            for(int j = 1 ; j <= total ; j++)
             {
                 if(j<stones[i-1])
                 {
@@ -29,13 +29,15 @@ class Solution {
                 }
             }
         }
-        int target = total/2;
-        for (int i = target; i >= 0; i--) {
-            if (dp[n][i]) {
-                return total - 2 * i;
-            }
+
+        int min = Integer.MAX_VALUE;
+
+        for(int i = 0 ; i <= total ; i++)
+        {
+            if(dp[n][i])
+                min = Math.min(min , Math.abs((total - i) - i));
         }
 
-        return 0;
+        return min;
     }
 }
