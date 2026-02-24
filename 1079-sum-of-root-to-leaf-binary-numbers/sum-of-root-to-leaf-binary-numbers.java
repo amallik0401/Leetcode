@@ -17,26 +17,23 @@ class Solution {
     int dec = 0;
     public int sumRootToLeaf(TreeNode node) {
         
-    StringBuilder ans = new StringBuilder();
-    help(node , ans);
+    help(node , 0);
 
         return dec;
     }
 
-    void help(TreeNode node ,StringBuilder ans)
+    void help(TreeNode node ,long ans)
     {
         if(node==null)
             return;
 
-        ans.append(String.valueOf(node.val));
+        ans = ans*2 + node.val;
 
         if (node.left == null && node.right == null) {
-            dec += Integer.parseInt(ans.toString(), 2);
+            dec += ans;
         } else {
             help(node.left, ans);
             help(node.right, ans);
         }
-
-        ans.deleteCharAt(ans.length() - 1);
     }
 }
