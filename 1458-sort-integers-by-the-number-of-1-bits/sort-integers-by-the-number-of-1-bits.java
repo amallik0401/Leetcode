@@ -15,7 +15,6 @@ class Solution {
 
         for(int i = 0 ; i < n ; i++)
         {
-            System.out.println(bit[i][1]);
             arr[i] = bit[i][1];
         }
         return arr;
