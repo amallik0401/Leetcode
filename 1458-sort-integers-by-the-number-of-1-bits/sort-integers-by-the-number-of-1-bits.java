@@ -1,7 +1,6 @@
 class Solution {
     public int[] sortByBits(int[] arr) {
 
-        Arrays.sort(arr);
         int n = arr.length;
         int[][] bit = new int[n][2];
 
@@ -11,7 +10,11 @@ class Solution {
             bit[i][1] = arr[i];
         }
 
-        Arrays.sort(bit , (a,b)-> Integer.compare(a[0] , b[0]));
+        Arrays.sort(bit , (a,b)-> {
+            if(a[0] == b[0])
+                return Integer.compare(a[1], b[1]); 
+            return Integer.compare(a[0], b[0]);      
+        });
 
         for(int i = 0 ; i < n ; i++)
         {
