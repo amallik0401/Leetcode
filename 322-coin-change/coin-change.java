@@ -1,30 +1,39 @@
 class Solution {
-    public int coinChange(int[] coins, int amount) {
-        if (coins == null || coins.length == 0 || amount < 0) {
-            return -1;
+    public int coinChange(int[] coins, int amount) 
+    {
+        int n = coins.length;
+        int [][]dp = new int[n + 1][amount+1];
+
+        for(int i = 0 ; i <= amount ; i++)
+        {
+            dp[0][i] = Integer.MAX_VALUE - 1;
         }
         
-        int []dp = new int[amount+1];
-
-        Arrays.fill(dp , amount+1);
-
-        dp[0] = 0;
-
         for(int i = 1 ; i <= amount ; i++)
         {
-            for(int c : coins)
+            if(i%coins[0] == 0)
+                dp[1][i] = i/coins[0];
+            else
+                dp[1][i] = Integer.MAX_VALUE -1;
+        }
+
+        for(int i = 2 ; i <= n ; i++)
+        {
+            for(int j = 1 ; j <= amount ; j++)
             {
-                if(i-c >= 0)
+                if(j< coins[i-1])
                 {
-                    dp[i] = Math.min(dp[i] , 1 + dp[i-c]); 
+                    dp[i][j] = dp[i-1][j];
+                }
+                else
+                {
+                    dp[i][j] = Math.min(dp[i-1][j] , dp[i][j - coins[i-1]] +1);
                 }
             }
         }
-        
-        if(dp[amount] != amount+1)
-            return dp[amount];
-        else
+        if(dp[n][amount] == Integer.MAX_VALUE - 1)
             return -1;
-
+        else
+            return dp[n][amount];         
     }
 }
