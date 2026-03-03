@@ -10,8 +10,6 @@ class Solution {
             sb.append(invert(temp));
         }
 
-        System.out.println(sb);
-
         return sb.charAt(k-1);
     }
 
