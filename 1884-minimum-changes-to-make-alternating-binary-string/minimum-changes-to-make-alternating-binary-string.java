@@ -21,9 +21,13 @@ class Solution {
         for(int i = 0; i < n ; i++)
         {
             if(s.charAt(i) == s1.charAt(i))
+            {
                 c2++;
+            }
             else
+            {
                 c1++;
+            }
         }
 
         return Math.min(c1,c2);
