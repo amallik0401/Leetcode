@@ -1,20 +1,20 @@
 class Solution {
     public int minOperations(String s) {
         int n = s.length();
-        String s1 = "1";
-        String s2 = "0";
+        StringBuilder s1 = new StringBuilder("1");
+        StringBuilder s2 = new StringBuilder("0");
 
         for(int i =0 ; i < n ; i++)
         {
             if(s1.charAt(i)== '1')
             {
-                s1 += '0';
-                s2 += '1';
+                s1.append('0');
+                s2.append('1');
             }
             else
             {
-                s2 += '0';
-                s1 += '1';
+                s2.append('0');
+                s1.append('1');
             }
         }
         int c1 = 0 , c2 = 0;
