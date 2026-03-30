@@ -3,7 +3,7 @@ class Solution {
     {
         int n = nums.length;
 
-        int sum =0 ;
+        int sum = 0 ;
 
         for(int i = 0 ; i < k ; i++)
         {
@@ -12,11 +12,11 @@ class Solution {
 
         int max = sum;
 
-        for(int i = k ;i<n ; i ++)
+        for(int i = k ; i < n ; i++)
         {
-            sum -= nums[i-k];
-            sum += nums[i];
-            max = Math.max(sum,max);
+            sum -=nums[i-k];
+            sum +=nums[i];
+            max = Math.max(max,sum);
         }
 
         return (double)max/k;
